@@ -5,7 +5,9 @@ const { SECRET } = require("../config/config");
 
 //jwt token check
 checkToken = (req, res, next) => {
-  const token = req.header("auth-token");
+  // if (!req.cookies)
+  //   return res.status(401).send("Authentication or Token required");
+  const token = req.cookies.token;
 
   //if token is not there
   if (!token) return res.status(401).send("Authentication or Token required");

@@ -53,7 +53,6 @@ router
 router
   .route("/:id")
   .get(checkId, (req, res) => {
-    const { user } = req;
     const userAppartment = appartments.filter(
       (appartment) => appartment.id == req.params.id
     );
@@ -65,10 +64,6 @@ router
     //Validation
     const error = appartmentValidate(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-
-    const [appartment] = appartments.filter(
-      (appartment) => appartment.id == req.params.id
-    );
     const { userid, floor, bedroom, number, owner, tenant } = req.body;
     const index = appartments.findIndex(
       (appartment) => appartment.id == req.params.id
@@ -78,8 +73,8 @@ router
     appartments[index].bedroom = bedroom;
     appartments[index].owner = owner;
     appartments[index].tenant = tenant;
-    //check user type
 
+    //check user type
     if (user.type === "admin") {
       appartments[index].userid = userid;
     }

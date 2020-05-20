@@ -33,6 +33,7 @@ router.post("/login", async (req, res) => {
     SECRET.jwt
   );
   res.header("auth-token", jwt_token);
+  res.cookie("token", jwt_token);
   res.status(200).send({ auth: true, jwt_token });
 });
 

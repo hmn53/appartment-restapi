@@ -1,5 +1,6 @@
 //setting up express server
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 
 //Routers
@@ -8,6 +9,7 @@ const userRoutes = require("./routes/users");
 const appartmentRoutes = require("./routes/appartment");
 
 app.use(express.json());
+app.use(cookieParser());
 
 //setting up routes
 app.use("/admin", adminRoutes);
