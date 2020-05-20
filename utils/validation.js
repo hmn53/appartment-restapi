@@ -12,14 +12,14 @@ const joiValidate = (data) => {
 
 const appartmentValidate = (data) => {
   const schema = joi.object({
-    id: joi.number,
-    number: joi.number.required(),
-    floor: joi.number.required(),
-    bedroom: joi.string.required(),
-    owner: joi.string.required(),
-    tenant: joi.string.required(),
+    userid: joi.number(),
+    number: joi.number().required(),
+    floor: joi.number().required(),
+    bedroom: joi.string().required(),
+    owner: joi.string().required(),
+    tenant: joi.string().required(),
   });
   const { error } = schema.validate(data);
   return error;
 };
-module.exports = { joiValidate };
+module.exports = { joiValidate, appartmentValidate };

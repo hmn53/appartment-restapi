@@ -1,5 +1,6 @@
 //define middlewares
 const jwt = require("jsonwebtoken");
+const { appartments } = require("../db");
 const { SECRET } = require("../config/config");
 
 //jwt token check
@@ -33,7 +34,22 @@ checkAdmin = (req, res, next) => {
   next();
 };
 
+//check if id is of current user
+checkId = (req, res, next) => {
+  const { user } = req;
+  if (!user) return res.status(401).send("Authentication required");
+  //user type
+  const [appartment] = appartments.filter(
+    (appartment) => appartment.userid == user.id
+  );
+  if (user.type == "admin") next();
+  else if (appartments.some((appartment) => appartment.id == req.params.id))
+    next();
+  else return res.status(401).send("Not Authorised");
+};
+
 module.exports = {
   checkAdmin,
   checkToken,
+  checkId,
 };

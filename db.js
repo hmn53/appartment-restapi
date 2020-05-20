@@ -18,7 +18,21 @@ const admin = {
   password: "$2a$10$3uF.Yo68tntyFQaspgft1exuJaJBpF5GAM5T2BEoK1tzfSxy.UUTa",
 };
 
+//appartment db
+const appartments = [
+  {
+    id: 1,
+    userid: 1,
+    number: 23,
+    floor: 2,
+    bedroom: "Large",
+    owner: "Raj",
+    tenant: "",
+  },
+];
+
 module.exports = {
   admin,
   users,
+  appartments,
 };
