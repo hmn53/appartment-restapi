@@ -3,12 +3,12 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-//db
-const { admin, users } = require("../db");
 const { SECRET } = require("../config/config");
 const { joiValidate } = require("../utils/validation");
-const { checkAdmin, checkToken } = require("../utils/middlewares");
 
+/* Routes */
+
+//POST user login
 router.post("/login", async (req, res) => {
   //Validation
   const error = joiValidate(req.body);
@@ -30,6 +30,14 @@ router.post("/login", async (req, res) => {
   res.header("auth-token", jwt_token);
   res.cookie("token", jwt_token);
   res.status(200).send({ auth: true, jwt_token });
+});
+
+//POST user logout
+router.post("/logout", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(400).send("Not already Logged in");
+  res.cookie("token", "");
+  return res.status(200).send("Logged out");
 });
 
 module.exports = router;

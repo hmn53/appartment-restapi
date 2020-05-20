@@ -10,7 +10,7 @@ checkToken = (req, res, next) => {
   const token = req.cookies.token;
 
   //if token is not there
-  if (!token) return res.status(401).send("Authentication or Token required");
+  if (!token) return res.status(401).send("Authentication required");
 
   //verify token
   try {
