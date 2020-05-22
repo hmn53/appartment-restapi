@@ -19,4 +19,6 @@ app.use("/appartment", appartmentRoutes);
 const PORT = 5000;
 
 // starting server at PORT
-app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
+module.exports = app.listen(PORT, () =>
+  console.log(`Server started at port ${PORT}`)
+);
