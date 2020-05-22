@@ -1,6 +1,6 @@
 //setting up appartment router
 const router = require("express").Router();
-const { appartments, users, admin } = require("../db");
+const { appartments } = require("../db");
 const { checkToken, checkId } = require("../utils/middlewares");
 const { appartmentValidate } = require("../utils/validation");
 
@@ -53,9 +53,19 @@ router
 router
   .route("/:id")
   .get(checkId, (req, res) => {
-    const userAppartment = appartments.filter(
-      (appartment) => appartment.id == req.params.id
-    );
+    const { user } = req;
+    let userAppartment = [];
+    if (user.type == "admin") {
+      userAppartment = appartments.filter(
+        (appartment) => appartment.id == req.params.id
+      );
+    } else {
+      userAppartment = appartments.filter(
+        (appartment) =>
+          appartment.id == req.params.id && appartment.userid == user.id
+      );
+    }
+
     if (userAppartment.length === 0) return res.status(404).send("Not found");
     return res.status(200).send(userAppartment);
   })

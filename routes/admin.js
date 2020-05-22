@@ -111,7 +111,7 @@ router.put("/users/:id", checkToken, checkAdmin, (req, res) => {
   users[index].username = username;
   users[index].password = hashedPassword;
 
-  return res.status(201).send("User updated");
+  return res.status(201).send({ user: users[index] });
 });
 
 //DELETE delete user by id
@@ -126,7 +126,7 @@ router.delete("/users/:id", checkToken, checkAdmin, (req, res) => {
   const index = users.findIndex((user) => user.id == id);
   const deletedUser = users.splice(index, 1);
 
-  res.status(200).send("User deleted");
+  res.status(200).send({ user: deletedUser });
 });
 
 module.exports = router;

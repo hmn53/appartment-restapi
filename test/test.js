@@ -370,7 +370,7 @@ describe("Tests for Appartment Routes", () => {
     /**
      * Test PUT(by id) /appartment/:id as an admin
      */
-    describe("PUT /appartment/3 as an admin", () => {
+    describe("PUT /appartment/3 as a user", () => {
       it("It should update appartment with id 3", (done) => {
         const data = {
           floor: 3,
