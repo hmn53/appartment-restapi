@@ -2,8 +2,8 @@
 
 ## Info
 
-Build a simple Apartment Management System, for Clerks as users, to maintain Apartments
-in a Gated Community. This software system functionality will be exposed as REST Api’s.
+A simple Apartment Management System, for Clerks as users, to maintain Apartments
+in a Gated Community. 
 
 ## Routes
 
@@ -36,7 +36,3 @@ The user can create an appartment with its own userid, view all the appartments 
 5. **PUT /appartment/:id** : _Update an appartment by id_
 6. **DELETE /appartment/:id** : _Delete an appartment by id_
 
-**Admin Details**
-
-- Username: admin
-- Password: DCpQahY8Uh
